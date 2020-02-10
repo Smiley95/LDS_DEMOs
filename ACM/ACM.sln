@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.BL", "ACM.BL\ACM.BL.csproj", "{0E171CA9-3A38-41C5-8D06-3BED676DD3DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.BL.Test", "ACM.BL.Test\ACM.BL.Test.csproj", "{FDE4317C-6307-467A-9C12-C4EEFB3A71B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E171CA9-3A38-41C5-8D06-3BED676DD3DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E171CA9-3A38-41C5-8D06-3BED676DD3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E171CA9-3A38-41C5-8D06-3BED676DD3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E171CA9-3A38-41C5-8D06-3BED676DD3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDE4317C-6307-467A-9C12-C4EEFB3A71B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDE4317C-6307-467A-9C12-C4EEFB3A71B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDE4317C-6307-467A-9C12-C4EEFB3A71B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDE4317C-6307-467A-9C12-C4EEFB3A71B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF846326-82D6-4749-940D-0F79408C79D5}
+	EndGlobalSection
+EndGlobal
