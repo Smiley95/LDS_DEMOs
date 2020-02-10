@@ -27,9 +27,9 @@ namespace ACM.BL.Test
             Costumer Frudo = new Costumer();
             Frudo.countCustomers();
             Costumer Lisa = new Costumer();
-            Frudo.countCustomers();
+            Lisa.countCustomers();
             Costumer Jay = new Costumer();
-            Frudo.countCustomers();
+            Jay.countCustomers();
             //Assert
             Assert.AreEqual(3, Costumer.CostumerCount);
         }
@@ -45,5 +45,17 @@ namespace ACM.BL.Test
             //Assert
             Assert.IsTrue(costumerOne.Validate());
         }
+        [TestMethod]
+        public void SavingTest()
+        {
+            //Arrange
+            Costumer costumerOne = new Costumer();
+            costumerOne.FirstName = "fname";
+            costumerOne.LastName = "lname";
+            costumerOne.EmailAddress = "lname@fname";
+            //Assert
+            Assert.IsTrue(costumerOne.Validate());
+        }
+
     }
 }

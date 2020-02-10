@@ -21,10 +21,33 @@ namespace ACM.BL
                 return FirstName + ", " + LastName;
             }
         }
+        //start constructors
+        public Costumer() { }
+        public Costumer(int ID)
+        {
+            CostumerID = ID;
+        }
+        public Costumer(string fname, string lname, string email)
+        {
+            FirstName = fname;
+            LastName = lname;
+            EmailAddress = email;
+        }
+        //end constructors
+        //start other methods
         public void countCustomers() { CostumerCount++; }
         public bool Validate()
         {
-            return (string.IsNullOrWhiteSpace(FirstName)|| string.IsNullOrWhiteSpace(LastName)|| string.IsNullOrWhiteSpace(EmailAddress))?  false: true;
+            return (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(EmailAddress)) ? false : true;
         }
+        public Costumer retrieve(int ID)
+        {
+            return new Costumer(ID);
+        }
+        public bool Save()
+        {
+            return true;
+        }
+        //end other methods
     }
 }
