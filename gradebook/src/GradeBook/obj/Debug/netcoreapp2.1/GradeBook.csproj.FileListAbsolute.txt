@@ -1,0 +1,11 @@
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\bin\Debug\netcoreapp2.1\GradeBook.deps.json
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\bin\Debug\netcoreapp2.1\GradeBook.runtimeconfig.json
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\bin\Debug\netcoreapp2.1\GradeBook.runtimeconfig.dev.json
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\bin\Debug\netcoreapp2.1\GradeBook.dll
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\bin\Debug\netcoreapp2.1\GradeBook.pdb
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\obj\Debug\netcoreapp2.1\GradeBook.csprojAssemblyReference.cache
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\obj\Debug\netcoreapp2.1\GradeBook.csproj.CoreCompileInputs.cache
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\obj\Debug\netcoreapp2.1\GradeBook.AssemblyInfoInputs.cache
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\obj\Debug\netcoreapp2.1\GradeBook.AssemblyInfo.cs
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\obj\Debug\netcoreapp2.1\GradeBook.dll
+C:\Users\ETaieb\Desktop\gradebook\src\GradeBook\obj\Debug\netcoreapp2.1\GradeBook.pdb
