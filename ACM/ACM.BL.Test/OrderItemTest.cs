@@ -15,14 +15,5 @@ namespace ACM.BL.Test
             //Assert
             Assert.IsTrue(RightOrderItem.Validate());
             Assert.IsFalse(WrongOrderItem.Validate());
-        }
-        [TestMethod]
-        public void SavingTest()
-        {
-            //Arrange
-            OrderItem orderItem = new OrderItem(3);
-            //Assert
-            Assert.IsTrue(orderItem.Save());
-        }
-    }
+        }    }
 }

@@ -16,13 +16,6 @@ namespace ACM.BL.Test
             Assert.IsTrue(productRight.Validate());
             Assert.IsFalse(ProductWrong.Validate());
         }
-        [TestMethod]
-        public void SavingTest()
-        {
-            //Arrange
-            Product product = new Product(3);
-            //Assert
-            Assert.IsTrue(product.Save());
-        }
+        
     }
 }

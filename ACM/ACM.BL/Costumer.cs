@@ -14,6 +14,8 @@ namespace ACM.BL
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
+        public Address HomeAddress;
+        public Address WorkAddress;
         public string _FullName
         {
             get
@@ -40,14 +42,7 @@ namespace ACM.BL
         {
             return (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(EmailAddress)) ? false : true;
         }
-        public Costumer retrieve(int ID)
-        {
-            return new Costumer(ID);
-        }
-        public bool Save()
-        {
-            return true;
-        }
+        
         //end other methods
     }
 }

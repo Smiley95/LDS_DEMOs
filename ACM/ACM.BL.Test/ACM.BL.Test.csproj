@@ -53,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProductTest.cs" />
     <Compile Include="OrderItemTest.cs" />
+    <Compile Include="RepositoriesTest\CostumerRepositoryTest.cs" />
+    <Compile Include="RepositoriesTest\OrderItemRepositoryTest.cs" />
+    <Compile Include="RepositoriesTest\ProductRepositoryTest.cs" />
+    <Compile Include="RepositoriesTest\AddressRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

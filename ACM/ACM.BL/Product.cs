@@ -27,14 +27,5 @@ namespace ACM.BL
         {
             return (string.IsNullOrWhiteSpace(ProductName) || string.IsNullOrWhiteSpace(Description) || CurrentPrice==0) ? false : true;
         }
-
-        public Product retrieve(int ID)
-        {
-            return new Product(ID);
-        }
-        public bool Save()
-        {
-            return true;
-        }
     }
 }

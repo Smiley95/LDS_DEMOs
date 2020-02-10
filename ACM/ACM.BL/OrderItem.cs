@@ -29,14 +29,7 @@ namespace ACM.BL
             return (ProductID == null || Quantity == 0||  Quantity == null || PurchasePrice == 0) ? false : true;
         }
 
-        public OrderItem retrieve(int ID)
-        {
-            return new OrderItem(ID);
-        }
-        public bool Save()
-        {
-            return true;
-        }
+        
 
 
     }

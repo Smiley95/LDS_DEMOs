@@ -45,17 +45,7 @@ namespace ACM.BL.Test
             //Assert
             Assert.IsTrue(costumerOne.Validate());
         }
-        [TestMethod]
-        public void SavingTest()
-        {
-            //Arrange
-            Costumer costumerOne = new Costumer();
-            costumerOne.FirstName = "fname";
-            costumerOne.LastName = "lname";
-            costumerOne.EmailAddress = "lname@fname";
-            //Assert
-            Assert.IsTrue(costumerOne.Validate());
-        }
+        
 
     }
 }
