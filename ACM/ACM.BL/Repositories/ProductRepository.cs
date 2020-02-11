@@ -12,8 +12,19 @@ namespace ACM.BL.Repositories
         {
             return new Product(ID);
         }
-        public bool Save()
+        public bool Save(Product product)
         {
+            if (product.HasChanges && product.IsValid )
+            {
+                if (product.IsNew)
+                {
+
+                }
+                else
+                {
+
+                }
+            }
             return true;
         }
     }

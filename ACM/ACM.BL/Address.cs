@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-    public class Address
+    public class Address : BaseACM
     {
         public int AddressID { get; set; }
         public string Country { get; set; }
@@ -20,9 +20,6 @@ namespace ACM.BL
         {
             AddressID = ID;
         }
-        public bool validate()
-        {
-            return (string.IsNullOrWhiteSpace(PostalCode) || string.IsNullOrWhiteSpace(Country)|| string.IsNullOrWhiteSpace(AddressType)|| string.IsNullOrWhiteSpace(City)|| string.IsNullOrWhiteSpace(State)|| string.IsNullOrWhiteSpace(StreetLine[0])|| string.IsNullOrWhiteSpace(StreetLine[1]))? false:true;
-        }
+        public override bool Validate() => (string.IsNullOrWhiteSpace(PostalCode) || string.IsNullOrWhiteSpace(Country)|| string.IsNullOrWhiteSpace(AddressType)|| string.IsNullOrWhiteSpace(City)|| string.IsNullOrWhiteSpace(State)|| string.IsNullOrWhiteSpace(StreetLine[0])|| string.IsNullOrWhiteSpace(StreetLine[1]))? false:true;
     }
 }

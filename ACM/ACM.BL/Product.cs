@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-    public class Product
+    public class Product : BaseACM
     {
         public int ProductID { get; private set; }
         public string ProductName { get; set; }
@@ -23,9 +23,6 @@ namespace ACM.BL
             CurrentPrice = currentPrice;
             ProductID = ID;
         }
-        public bool Validate()
-        {
-            return (string.IsNullOrWhiteSpace(ProductName) || string.IsNullOrWhiteSpace(Description) || CurrentPrice==0) ? false : true;
-        }
+        public override bool Validate () => (string.IsNullOrWhiteSpace(ProductName) || string.IsNullOrWhiteSpace(Description) || CurrentPrice==0) ? false : true;
     }
 }

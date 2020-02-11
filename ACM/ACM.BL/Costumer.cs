@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-    public class Costumer
+    public class Costumer : BaseACM
     {
         public static int CostumerCount = 0;
         public int CostumerID { get; private set; }
@@ -38,10 +38,7 @@ namespace ACM.BL
         //end constructors
         //start other methods
         public void countCustomers() { CostumerCount++; }
-        public bool Validate()
-        {
-            return (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(EmailAddress)) ? false : true;
-        }
+        public override bool Validate() => (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(EmailAddress)) ? false : true;
         
         //end other methods
     }

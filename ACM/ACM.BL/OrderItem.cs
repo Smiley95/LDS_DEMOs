@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-    public class OrderItem
+    public class OrderItem : BaseACM
     {
         public int OrderItemID { get; private set; }
         public int?  ProductID { get; set; }
@@ -24,10 +24,7 @@ namespace ACM.BL
             Quantity = quantity;
             PurchasePrice = purchasePrice;
         }
-        public bool Validate()
-        {
-            return (ProductID == null || Quantity == 0||  Quantity == null || PurchasePrice == 0) ? false : true;
-        }
+        public override bool Validate() => (ProductID == null || Quantity == 0||  Quantity == null || PurchasePrice == 0) ? false : true;
 
         
 

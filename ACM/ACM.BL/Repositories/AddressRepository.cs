@@ -12,8 +12,19 @@ namespace ACM.BL.Repositories
         {
             return new Address(ID);
         }
-        public bool Save()
+        public bool Save(Address address)
         {
+            if (address.HasChanges && address.IsValid)
+            {
+                if (address.IsNew)
+                {
+
+                }
+                else
+                {
+
+                }
+            }
             return true;
         }
     }

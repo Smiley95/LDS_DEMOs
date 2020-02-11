@@ -12,8 +12,19 @@ namespace ACM.BL.Repositories
         {
             return new OrderItem(ID);
         }
-        public bool Save()
+        public bool Save(OrderItem orderItem)
         {
+            if (orderItem.HasChanges && orderItem.IsValid)
+            {
+                if (orderItem.IsNew)
+                {
+
+                }
+                else
+                {
+
+                }
+            }
             return true;
         }
     }
