@@ -31,8 +31,11 @@ namespace BankAccount
         public void DeposeCash(double funds)
         {
             if (funds > 0) balance += funds;
-            else throw new Exception("Invalid fund input");
-            
+            else throw new Exception("Invalid fund input");   
+        }
+        public void WithdrawCash(double funds)
+        {
+            balance -= funds;
         }
     }   
 
