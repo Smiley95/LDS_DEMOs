@@ -40,7 +40,8 @@ namespace BankAccount
         }
         public void WireTransfer(double funds)
         {
-            balance -= funds;
+            if(funds > 0 && funds<= balance) balance -= funds;
+            else throw new Exception("Invalid fund input");
         }
     }   
 }
