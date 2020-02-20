@@ -100,5 +100,15 @@ namespace AccountTest
             Xunit.Assert.True(_account.blocked);
             Xunit.Assert.Equal(1000, _account.balance);
         }
+        [Fact]
+        public void ShouldNotExceedOverdraftLimitToWithdraw()
+        {
+            Account _account = new Account(4,"someone");
+            _account.balance = 1000;
+            _account.overdraftLimit = 500;
+            _account.WithdrawCash(600);
+            Xunit.Assert.True(_account.blocked);
+            Xunit.Assert.Equal(1000, _account.balance);
+        }
     }
 }

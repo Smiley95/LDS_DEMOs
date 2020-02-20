@@ -39,14 +39,19 @@ namespace BankAccount
         public void WithdrawCash(double funds)
         {
             if (blocked) return;
-            if (funds > 0 && funds<= balance) balance -= funds;
-            else throw new Exception("Invalid fund input");
+            if (funds <= 0 ) throw new Exception("Invalid fund input");
+            if(Math.Abs(balance - funds) == overdraftLimit)
+            {
+                blocked = true;
+                return;
+            }
+            balance -= funds;
         }
         public void WireTransfer(double funds)
         {
             if (blocked) return;
-            if (funds < 0 && funds > balance) throw new Exception("Invalid fund input");
-            if (funds> dailyWireTransferLimit)
+            if (funds <= 0 ) throw new Exception("Invalid fund input");
+            if (funds> dailyWireTransferLimit || Math.Abs(balance-funds)==overdraftLimit)
             {
                 blocked = true;
                 return;
