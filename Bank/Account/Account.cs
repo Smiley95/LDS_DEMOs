@@ -28,6 +28,10 @@ namespace BankAccount
                 balance += funds;
             }
         }
+        public void DeposeCash(double funds)
+        {
+            balance += funds;
+        }
     }   
 
 }
