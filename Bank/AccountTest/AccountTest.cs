@@ -20,7 +20,6 @@ namespace AccountTest
             _account.overdraftLimit = 10000;
             Xunit.Assert.Equal(10000,_account.overdraftLimit);
         }
-
         [Fact]
         public void ShouldSetDailyWireTransferLimit()
         {
@@ -28,7 +27,13 @@ namespace AccountTest
             _account.dailyWireTransferLimit = 10000;
             Xunit.Assert.Equal(10000, _account.dailyWireTransferLimit);
         }
-        //daily wire transfer limit
+        [Fact]
+        public void ShouldDeposeChequeToAccount()
+        {
+            Account _account = new Account(4, "someone");
+            _account.DeposeCheque(40000);
+            Xunit.Assert.Equal(40000, _account.balance);
+        }
 
     }
 }
