@@ -9,6 +9,7 @@ namespace BankAccount
         public string holder { get; set; }
         public double overdraftLimit { get; set; }
         public double balance { get; set; }
+        public bool blocked = false;
         public  double dailyWireTransferLimit { get; set; }
         public Account(int ID, string holder)
         {
@@ -40,8 +41,14 @@ namespace BankAccount
         }
         public void WireTransfer(double funds)
         {
-            if(funds > 0 && funds<= balance) balance -= funds;
-            else throw new Exception("Invalid fund input");
+            if (blocked) return;
+            if (funds < 0 && funds > balance) throw new Exception("Invalid fund input");
+            if (funds> dailyWireTransferLimit)
+            {
+                blocked = true;
+                return;
+            }
+            balance -= funds;
         }
     }   
 }

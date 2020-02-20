@@ -80,5 +80,25 @@ namespace AccountTest
             Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(0));
             Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(2000));
         }
+        [Fact]
+        public void ShouldWireTransferDontChangeIfAccountIsBlocked()
+        {
+            Account _account = new Account(4, "someone");
+            _account.balance = 1000;
+            _account.dailyWireTransferLimit = 600;
+            _account.blocked = true;
+            _account.WireTransfer(500);
+            Xunit.Assert.Equal(1000, _account.balance);
+        }
+        [Fact]
+        public void ShouldWireTransferBlock()
+        {
+            Account _account = new Account(4, "someone");
+            _account.balance = 1000;
+            _account.dailyWireTransferLimit = 500;
+            _account.WireTransfer(600);
+            Xunit.Assert.True(_account.blocked);
+            Xunit.Assert.Equal(1000, _account.balance);
+        }
     }
 }
