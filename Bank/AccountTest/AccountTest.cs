@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xunit;
 using BankAccount;
+using System.Threading.Tasks;
 
 namespace AccountTest
 {
@@ -28,12 +29,18 @@ namespace AccountTest
             Xunit.Assert.Equal(10000, _account.dailyWireTransferLimit);
         }
         [Fact]
-        public void ShouldDeposeChequeToAccount()
+        public async Task ShouldDeposeChequeToAccount()
         {
             Account _account = new Account(4, "someone");
-            _account.DeposeCheque(40000);
+            await _account.DeposeCheque(40000);
             Xunit.Assert.Equal(40000, _account.balance);
         }
-
+        [Fact]
+        public void ShouldDeposeCashToAccount()
+        {
+            Account _account = new Account(4, "someone");
+            _account.DeposeCash(40000);
+            Xunit.Assert.Equal(40000, _account.balance);
+        }
     }
 }
