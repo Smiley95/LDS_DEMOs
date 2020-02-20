@@ -48,5 +48,13 @@ namespace AccountTest
             Account _account = new Account(4, "someone");
             Xunit.Assert.Throws<Exception>(() => _account.DeposeCash(0));
         }
+        [Fact]
+        public void ShouldWithdrawCashFromAccount()
+        {
+            Account _account = new Account(4, "someone");
+            _account.DeposeCash(40000);
+            _account.WithdrawCash(5000);
+            Xunit.Assert.Equal(35000, _account.balance);
+        }
     }
 }
