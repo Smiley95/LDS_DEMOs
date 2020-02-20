@@ -1,0 +1,2 @@
+C:\Users\ETaieb\Desktop\mandatory\Demos\Bank\AccountTest\obj\Debug\Account.Test.csprojAssemblyReference.cache
+C:\Users\ETaieb\Desktop\mandatory\Demos\Bank\AccountTest\obj\Debug\Account.Test.csproj.CoreCompileInputs.cache

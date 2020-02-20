@@ -6,5 +6,9 @@ using System.Threading.Tasks;
 
 namespace Account
 {
-    
+    public class Account
+    {
+
+    }   
+
 }

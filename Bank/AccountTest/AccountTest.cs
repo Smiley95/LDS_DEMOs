@@ -1,14 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace AccountTest
 {
-    [TestClass]
     public class AccountTest
     {
-        [TestMethod]
-        public void TestMethod1()
+        [Fact]
+        public void ShouldCreateAccount()
         {
+            Account _account = new Account(4, "someone");
+            Xunit.Assert.NotNull(_account);
         }
     }
 }

@@ -1,0 +1,6 @@
+C:\Users\ETaieb\Desktop\mandatory\Demos\Bank\Account\bin\Debug\Account.dll
+C:\Users\ETaieb\Desktop\mandatory\Demos\Bank\Account\bin\Debug\Account.pdb
+C:\Users\ETaieb\Desktop\mandatory\Demos\Bank\Account\obj\Debug\Account.csprojAssemblyReference.cache
+C:\Users\ETaieb\Desktop\mandatory\Demos\Bank\Account\obj\Debug\Account.csproj.CoreCompileInputs.cache
+C:\Users\ETaieb\Desktop\mandatory\Demos\Bank\Account\obj\Debug\Account.dll
+C:\Users\ETaieb\Desktop\mandatory\Demos\Bank\Account\obj\Debug\Account.pdb
