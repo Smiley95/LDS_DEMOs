@@ -101,14 +101,51 @@ namespace AccountTest
             Xunit.Assert.Equal(1000, _account.balance);
         }
         [Fact]
-        public void ShouldNotExceedOverdraftLimitToWithdraw()
+        public void ShouldNotExceedOverdraftLimitToWithdrawCash()
         {
             Account _account = new Account(4,"someone");
             _account.balance = 1000;
             _account.overdraftLimit = 500;
-            _account.WithdrawCash(600);
+            _account.WithdrawCash(1501);
             Xunit.Assert.True(_account.blocked);
             Xunit.Assert.Equal(1000, _account.balance);
+        }
+        [Fact]
+        public void ShouldNotExceedOverdraftLimitToWithdrawWireTransfer()
+        {
+            Account _account = new Account(4, "someone");
+            _account.balance = 1000;
+            _account.overdraftLimit = 500;
+            _account.dailyWireTransferLimit = 2000;
+            _account.WireTransfer(1501);
+            Xunit.Assert.True(_account.blocked);
+            Xunit.Assert.Equal(1000,_account.balance);
+        }
+        [Fact]
+        public void ShouldDisposeCashUnblockAccount()
+        {
+            Account _account = new Account(4, "someone");
+            _account.balance = 1000;
+            _account.overdraftLimit = 500;
+            _account.WithdrawCash(1501);
+            Xunit.Assert.True(_account.blocked);
+            Xunit.Assert.Equal(1000, _account.balance);
+            _account.DeposeCash(400);
+            Xunit.Assert.False(_account.blocked);
+            Xunit.Assert.Equal(1400, _account.balance);
+        }
+        [Fact]
+        public async Task ShouldDisposeChequeUnblockAccount()
+        {
+            Account _account = new Account(4, "someone");
+            _account.balance = 1000;
+            _account.overdraftLimit = 500;
+            _account.WithdrawCash(1501);
+            Xunit.Assert.True(_account.blocked);
+            Xunit.Assert.Equal(1000, _account.balance);
+            await _account.DeposeCheque(400);
+            Xunit.Assert.False(_account.blocked);
+            Xunit.Assert.Equal(1400, _account.balance);
         }
     }
 }

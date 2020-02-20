@@ -18,29 +18,33 @@ namespace BankAccount
         }
         public async Task DeposeCheque(double funds)
         {
-            if (blocked) return;
+            if (funds <= 0) throw new Exception("Invalid fund input");
+            if (balance + funds <= 0) return;
             if (DateTime.Today.DayOfWeek == DayOfWeek.Friday)
             {
                 await Task.Delay(DateTime.Today.AddDays(3).AddHours(9) - DateTime.Now);
                 balance += funds;
+                blocked = false;
             }
             else
             {
                 await Task.Delay(DateTime.Today.AddDays(1).AddHours(9) - DateTime.Now);
                 balance += funds;
+                blocked = false;
             }
         }
         public void DeposeCash(double funds)
         {
-            if (blocked) return;
-            if (funds > 0) balance += funds;
-            else throw new Exception("Invalid fund input");   
+            if (balance + funds <= 0) return;
+            if (funds <= 0) throw new Exception("Invalid fund input");
+            blocked = false;
+            balance += funds;
         }
         public void WithdrawCash(double funds)
         {
             if (blocked) return;
             if (funds <= 0 ) throw new Exception("Invalid fund input");
-            if(Math.Abs(balance - funds) == overdraftLimit)
+            if(Math.Abs(balance - funds) > overdraftLimit)
             {
                 blocked = true;
                 return;
@@ -51,7 +55,7 @@ namespace BankAccount
         {
             if (blocked) return;
             if (funds <= 0 ) throw new Exception("Invalid fund input");
-            if (funds> dailyWireTransferLimit || Math.Abs(balance-funds)==overdraftLimit)
+            if (funds> dailyWireTransferLimit || Math.Abs(balance-funds)>overdraftLimit)
             {
                 blocked = true;
                 return;
