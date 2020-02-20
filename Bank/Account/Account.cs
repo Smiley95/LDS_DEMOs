@@ -18,7 +18,8 @@ namespace BankAccount
         }
         public async Task DeposeCheque(double funds)
         {
-            if(DateTime.Today.DayOfWeek == DayOfWeek.Friday)
+            if (blocked) return;
+            if (DateTime.Today.DayOfWeek == DayOfWeek.Friday)
             {
                 await Task.Delay(DateTime.Today.AddDays(3).AddHours(9) - DateTime.Now);
                 balance += funds;
@@ -31,12 +32,14 @@ namespace BankAccount
         }
         public void DeposeCash(double funds)
         {
+            if (blocked) return;
             if (funds > 0) balance += funds;
             else throw new Exception("Invalid fund input");   
         }
         public void WithdrawCash(double funds)
         {
-            if(funds > 0 && funds<= balance) balance -= funds;
+            if (blocked) return;
+            if (funds > 0 && funds<= balance) balance -= funds;
             else throw new Exception("Invalid fund input");
         }
         public void WireTransfer(double funds)
