@@ -64,5 +64,13 @@ namespace AccountTest
             Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(0));
             Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(2000));
         }
+        [Fact]
+        public void ShouldWithdrawWireTransfer()
+        {
+            Account _account = new Account(4, "someone");
+            _account.balance = 4000;
+            _account.WireTransfer(1000);
+            Xunit.Assert.Equal(3000,_account.balance);
+        }
     }
 }
