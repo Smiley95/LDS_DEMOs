@@ -1,5 +1,8 @@
 ﻿
 
+using System;
+using System.Threading.Tasks;
+
 namespace BankAccount
 {
     public class Account
@@ -13,6 +16,19 @@ namespace BankAccount
         {
             this.ID = ID;
             this.holder = holder;
+        }
+        public async Task DeposeCheque(double funds)
+        {
+            if(DateTime.Today.DayOfWeek == DayOfWeek.Friday)
+            {
+                await Task.Delay(DateTime.Today.AddDays(3).AddHours(9) - DateTime.Now);
+                balance += funds;
+            }
+            else
+            {
+                await Task.Delay(DateTime.Today.AddDays(1).AddHours(9) - DateTime.Now);
+                balance += funds;
+            }
         }
     }   
 
