@@ -8,12 +8,14 @@ namespace AccountTest
 {
     public class AccountTest
     {
+        [Trait("Category", "construction")]
         [Fact]
         public void ShouldCreateAccount()
         {
             Account _account = new Account(4,"someone");
             Xunit.Assert.NotNull(_account);
         }
+        [Trait("Category", "construction")]
         [Fact]
         public void ShouldSetOverdraftLimit()
         {
@@ -21,6 +23,7 @@ namespace AccountTest
             _account.overdraftLimit = 10000;
             Xunit.Assert.Equal(10000,_account.overdraftLimit);
         }
+        [Trait("Category", "construction")]
         [Fact]
         public void ShouldSetDailyWireTransferLimit()
         {
@@ -28,6 +31,7 @@ namespace AccountTest
             _account.dailyWireTransferLimit = 10000;
             Xunit.Assert.Equal(10000, _account.dailyWireTransferLimit);
         }
+        [Trait("Category", "Dispose")]
         [Fact]
         public async Task ShouldDeposeChequeToAccount()
         {
@@ -35,6 +39,7 @@ namespace AccountTest
             await _account.DeposeCheque(40000);
             Xunit.Assert.Equal(40000, _account.balance);
         }
+        [Trait("Category", "Dispose")]
         [Fact]
         public void ShouldDeposeCashToAccount()
         {
@@ -42,12 +47,14 @@ namespace AccountTest
             _account.DeposeCash(40000);
             Xunit.Assert.Equal(40000, _account.balance);
         }
+        [Trait("Category", "valid input")]
         [Fact]
         public void ShouldDeposeValidCashInput()
         {
             Account _account = new Account(4, "someone");
             Xunit.Assert.Throws<Exception>(() => _account.DeposeCash(0));
         }
+        [Trait("Category", "Withdraw")]
         [Fact]
         public void ShouldWithdrawCashFromAccount()
         {
@@ -56,30 +63,37 @@ namespace AccountTest
             _account.WithdrawCash(5000);
             Xunit.Assert.Equal(35000, _account.balance);
         }
+        [Trait("Category", "valid input")]
         [Fact]
         public void ShouldWithdrawValidCashInput()
         {
             Account _account = new Account(4, "someone");
             _account.balance = 1000;
             Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(0));
-            Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(2000));
+            _account.WithdrawCash(2000);
+            Xunit.Assert.True(_account.blocked);
         }
+        [Trait("Category", "Withdraw")]
         [Fact]
         public void ShouldWithdrawWireTransfer()
         {
             Account _account = new Account(4, "someone");
             _account.balance = 4000;
+            _account.dailyWireTransferLimit = 1000;
             _account.WireTransfer(1000);
             Xunit.Assert.Equal(3000,_account.balance);
         }
+        [Trait("Category", "valid input")]
         [Fact]
         public void ShouldWireTransferWithdrawValidAmount()
         {
             Account _account = new Account(4, "someone");
             _account.balance = 1000;
             Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(0));
-            Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(2000));
+            _account.WithdrawCash(2000);
+            Xunit.Assert.True(_account.blocked);
         }
+        [Trait("Category", "Blocked")]
         [Fact]
         public void ShouldWireTransferDontChangeIfAccountIsBlocked()
         {
@@ -90,6 +104,7 @@ namespace AccountTest
             _account.WireTransfer(500);
             Xunit.Assert.Equal(1000, _account.balance);
         }
+        [Trait("Category", "Blocked")]
         [Fact]
         public void ShouldWireTransferBlock()
         {
@@ -100,6 +115,7 @@ namespace AccountTest
             Xunit.Assert.True(_account.blocked);
             Xunit.Assert.Equal(1000, _account.balance);
         }
+        [Trait("Category", "Blocked")]
         [Fact]
         public void ShouldNotExceedOverdraftLimitToWithdrawCash()
         {
@@ -110,6 +126,7 @@ namespace AccountTest
             Xunit.Assert.True(_account.blocked);
             Xunit.Assert.Equal(1000, _account.balance);
         }
+        [Trait("Category", "Blocked")]
         [Fact]
         public void ShouldNotExceedOverdraftLimitToWithdrawWireTransfer()
         {
@@ -121,6 +138,7 @@ namespace AccountTest
             Xunit.Assert.True(_account.blocked);
             Xunit.Assert.Equal(1000,_account.balance);
         }
+        [Trait("Category", "Unblock")]
         [Fact]
         public void ShouldDisposeCashUnblockAccount()
         {
@@ -134,6 +152,7 @@ namespace AccountTest
             Xunit.Assert.False(_account.blocked);
             Xunit.Assert.Equal(1400, _account.balance);
         }
+        [Trait("Category", "Unblock")]
         [Fact]
         public async Task ShouldDisposeChequeUnblockAccount()
         {
