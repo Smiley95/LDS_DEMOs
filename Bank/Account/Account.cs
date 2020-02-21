@@ -5,62 +5,62 @@ namespace BankAccount
 {
     public class Account
     {
-        public int ID;
-        public string holder { get; set; }
-        public double overdraftLimit { get; set; }
-        public double balance { get; set; }
-        public bool blocked = false;
-        public  double dailyWireTransferLimit { get; set; }
-        public Account(int ID, string holder)
+        private int Id;
+        public string Holder { get; set; }
+        public double OverdraftLimit = 500;
+        public double Balance { get; set; }
+        public bool Blocked = false;
+        public double dailyWireTransferLimit; 
+        public Account(int id, string holder)
         {
-            this.ID = ID;
-            this.holder = holder;
+            this.Id = id;
+            this.Holder = holder;
         }
         public async Task DeposeCheque(double funds)
         {
             if (funds <= 0) throw new Exception("Invalid fund input");
-            if (balance + funds <= 0) return;
+            if (Balance + funds <= 0) return;
             if (DateTime.Today.DayOfWeek == DayOfWeek.Friday)
             {
-                await Task.Delay(3000/*DateTime.Today.AddDays(3).AddHours(9) - DateTime.Now*/);
-                balance += funds;
-                blocked = false;
+                await Task.Delay(DateTime.Today.AddDays(3).AddHours(9) - DateTime.Now);
+                Balance += funds;
+                Blocked = false;
             }
             else
             {
-                await Task.Delay(5000/*DateTime.Today.AddDays(1).AddHours(9) - DateTime.Now*/);
-                balance += funds;
-                blocked = false;
+                await Task.Delay(DateTime.Today.AddDays(1).AddHours(9) - DateTime.Now);
+                Balance += funds;
+                Blocked = false;
             }
         }
         public void DeposeCash(double funds)
         {
             if (funds <= 0) throw new Exception("Invalid fund input");
-            if (balance + funds <= 0) return;
-            blocked = false;
-            balance += funds;
+            if (Balance + funds <= 0) return;
+            Blocked = false;
+            Balance += funds;
         }
         public void WithdrawCash(double funds)
         {
-            if (blocked) return;
+            if (Blocked) return;
             if (funds <= 0 ) throw new Exception("Invalid fund input");
-            if(balance - funds < 0 && Math.Abs(balance - funds) > overdraftLimit)
+            if(Balance - funds < 0 && Math.Abs(Balance - funds) > OverdraftLimit)
             {
-                blocked = true;
+                Blocked = true;
                 return;
             }
-            balance -= funds;
+            Balance -= funds;
         }
         public void WireTransfer(double funds)
         {
-            if (blocked) return;
+            if (Blocked) return;
             if (funds <= 0 ) throw new Exception("Invalid fund input");
-            if (funds> dailyWireTransferLimit || (Math.Abs(balance-funds)>overdraftLimit && balance - funds < 0 ))
+            if (funds> dailyWireTransferLimit || (Math.Abs(Balance-funds)> OverdraftLimit && Balance - funds < 0 ))
             {
-                blocked = true;
+                Blocked = true;
                 return;
             }
-            balance -= funds;
+            Balance -= funds;
         }
     }   
 }

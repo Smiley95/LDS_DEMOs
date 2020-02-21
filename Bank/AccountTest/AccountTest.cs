@@ -1,170 +1,166 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xunit;
-using BankAccount;
+﻿using BankAccount;
+using System;
 using System.Threading.Tasks;
+
 
 namespace AccountTest
 {
+    using Xunit;
     public class AccountTest
     {
         [Trait("Category", "construction")]
         [Fact]
-        public void ShouldCreateAccount()
+        public void CanCreateAccount()
         {
-            Account _account = new Account(4,"someone");
-            Xunit.Assert.NotNull(_account);
+            var account = new Account(4,"someone");
+            Assert.NotNull(account);
         }
         [Trait("Category", "construction")]
         [Fact]
-        public void ShouldSetOverdraftLimit()
+        public void CanSetOverdraftLimit()
         {
-            Account _account = new Account(4, "someone");
-            _account.overdraftLimit = 10000;
-            Xunit.Assert.Equal(10000,_account.overdraftLimit);
+            var account = new Account(4, "someone");
+            account.OverdraftLimit = 10000;
+            Assert.Equal(10000,account.OverdraftLimit);
         }
         [Trait("Category", "construction")]
         [Fact]
-        public void ShouldSetDailyWireTransferLimit()
+        public void CanSetDailyWireTransferLimit()
         {
-            Account _account = new Account(4, "someone");
-            _account.dailyWireTransferLimit = 10000;
-            Xunit.Assert.Equal(10000, _account.dailyWireTransferLimit);
+            var account = new Account(4, "someone");
+            account.dailyWireTransferLimit = 10000;
+            Assert.Equal(10000, account.dailyWireTransferLimit);
         }
         [Trait("Category", "Dispose")]
         [Fact]
-        public async Task ShouldDeposeChequeToAccount()
+        public async Task CanDeposeChequeToAccount()
         {
-            Account _account = new Account(4, "someone");
-            await _account.DeposeCheque(40000);
-            Xunit.Assert.Equal(40000, _account.balance);
+            var account = new Account(4, "someone");
+            await account.DeposeCheque(40000);
+            Assert.Equal(40000, account.Balance);
         }
         [Trait("Category", "Dispose")]
         [Fact]
-        public void ShouldDeposeCashToAccount()
+        public void CanDeposeCashToAccount()
         {
-            Account _account = new Account(4, "someone");
-            _account.DeposeCash(40000);
-            Xunit.Assert.Equal(40000, _account.balance);
+            var account = new Account(4, "someone");
+            account.DeposeCash(40000);
+            Assert.Equal(40000, account.Balance);
         }
         [Trait("Category", "valid input")]
         [Fact]
-        public void ShouldDeposeValidCashInput()
+        public void CanDeposeValidCashInput()
         {
-            Account _account = new Account(4, "someone");
-            Xunit.Assert.Throws<Exception>(() => _account.DeposeCash(0));
+            var account = new Account(4, "someone");
+            Assert.Throws<Exception>(() => account.DeposeCash(0));
         }
         [Trait("Category", "Withdraw")]
         [Fact]
-        public void ShouldWithdrawCashFromAccount()
+        public void CanWithdrawCashFromAccount()
         {
-            Account _account = new Account(4, "someone");
-            _account.DeposeCash(40000);
-            _account.WithdrawCash(5000);
-            Xunit.Assert.Equal(35000, _account.balance);
+            var account = new Account(4, "someone");
+            account.DeposeCash(40000);
+            account.WithdrawCash(5000);
+            Assert.Equal(35000, account.Balance);
         }
         [Trait("Category", "valid input")]
         [Fact]
-        public void ShouldWithdrawValidCashInput()
+        public void CanWithdrawValidCashInput()
         {
-            Account _account = new Account(4, "someone");
-            _account.balance = 1000;
-            Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(0));
-            _account.WithdrawCash(2000);
-            Xunit.Assert.True(_account.blocked);
+            var account = new Account(4, "someone");
+            account.Balance = 1000;
+            Assert.Throws<Exception>(() => account.WithdrawCash(0));
+            account.WithdrawCash(2000);
+            Assert.True(account.Blocked);
         }
         [Trait("Category", "Withdraw")]
         [Fact]
-        public void ShouldWithdrawWireTransfer()
+        public void CanWithdrawWireTransfer()
         {
-            Account _account = new Account(4, "someone");
-            _account.balance = 4000;
-            _account.dailyWireTransferLimit = 1000;
-            _account.WireTransfer(1000);
-            Xunit.Assert.Equal(3000,_account.balance);
+            var account = new Account(4, "someone");
+            account.Balance = 4000;
+            account.dailyWireTransferLimit = 1000;
+            account.WireTransfer(1000);
+            Assert.Equal(3000,account.Balance);
         }
         [Trait("Category", "valid input")]
         [Fact]
-        public void ShouldWireTransferWithdrawValidAmount()
+        public void CanWireTransferWithdrawValidAmount()
         {
-            Account _account = new Account(4, "someone");
-            _account.balance = 1000;
-            Xunit.Assert.Throws<Exception>(() => _account.WithdrawCash(0));
-            _account.WithdrawCash(2000);
-            Xunit.Assert.True(_account.blocked);
+            var account = new Account(4, "someone");
+            account.Balance = 1000;
+            Assert.Throws<Exception>(() => account.WithdrawCash(0));
+            account.WithdrawCash(2000);
+            Assert.True(account.Blocked);
         }
         [Trait("Category", "Blocked")]
         [Fact]
-        public void ShouldWireTransferDontChangeIfAccountIsBlocked()
+        public void CanWireTransferDontChangeIfAccountIsBlocked()
         {
-            Account _account = new Account(4, "someone");
-            _account.balance = 1000;
-            _account.dailyWireTransferLimit = 600;
-            _account.blocked = true;
-            _account.WireTransfer(500);
-            Xunit.Assert.Equal(1000, _account.balance);
+            var account = new Account(4, "someone");
+            account.Balance = 1000;
+            account.dailyWireTransferLimit = 600;
+            account.Blocked = true;
+            account.WireTransfer(500);
+            Assert.Equal(1000, account.Balance);
         }
         [Trait("Category", "Blocked")]
         [Fact]
-        public void ShouldWireTransferBlock()
+        public void CanWireTransferBlock()
         {
-            Account _account = new Account(4, "someone");
-            _account.balance = 1000;
-            _account.dailyWireTransferLimit = 500;
-            _account.WireTransfer(600);
-            Xunit.Assert.True(_account.blocked);
-            Xunit.Assert.Equal(1000, _account.balance);
+            var account = new Account(4, "someone");
+            account.Balance = 1000;
+            account.dailyWireTransferLimit = 500;
+            account.WireTransfer(600);
+            Assert.True(account.Blocked);
+            Assert.Equal(1000, account.Balance);
         }
         [Trait("Category", "Blocked")]
         [Fact]
-        public void ShouldNotExceedOverdraftLimitToWithdrawCash()
+        public void CanNotExceedOverdraftLimitToWithdrawCash()
         {
-            Account _account = new Account(4,"someone");
-            _account.balance = 1000;
-            _account.overdraftLimit = 500;
-            _account.WithdrawCash(1501);
-            Xunit.Assert.True(_account.blocked);
-            Xunit.Assert.Equal(1000, _account.balance);
+            var account = new Account(4,"someone");
+            account.Balance = 1000;
+            account.WithdrawCash(1501);
+            Assert.True(account.Blocked);
+            Assert.Equal(1000, account.Balance);
         }
         [Trait("Category", "Blocked")]
         [Fact]
-        public void ShouldNotExceedOverdraftLimitToWithdrawWireTransfer()
+        public void CanNotExceedOverdraftLimitToWithdrawWireTransfer()
         {
-            Account _account = new Account(4, "someone");
-            _account.balance = 1000;
-            _account.overdraftLimit = 500;
-            _account.dailyWireTransferLimit = 2000;
-            _account.WireTransfer(1501);
-            Xunit.Assert.True(_account.blocked);
-            Xunit.Assert.Equal(1000,_account.balance);
+            var account = new Account(4, "someone");
+            account.Balance = 1000;
+            account.dailyWireTransferLimit = 2000;
+            account.WireTransfer(1501);
+            Assert.True(account.Blocked);
+            Assert.Equal(1000,account.Balance);
         }
         [Trait("Category", "Unblock")]
         [Fact]
-        public void ShouldDisposeCashUnblockAccount()
+        public void CanDisposeCashUnblockAccount()
         {
-            Account _account = new Account(4, "someone");
-            _account.balance = 1000;
-            _account.overdraftLimit = 500;
-            _account.WithdrawCash(1501);
-            Xunit.Assert.True(_account.blocked);
-            Xunit.Assert.Equal(1000, _account.balance);
-            _account.DeposeCash(400);
-            Xunit.Assert.False(_account.blocked);
-            Xunit.Assert.Equal(1400, _account.balance);
+            var account = new Account(4, "someone");
+            account.Balance = 1000;
+            account.WithdrawCash(1501);
+            Assert.True(account.Blocked);
+            Assert.Equal(1000, account.Balance);
+            account.DeposeCash(400);
+            Assert.False(account.Blocked);
+            Assert.Equal(1400, account.Balance);
         }
         [Trait("Category", "Unblock")]
         [Fact]
-        public async Task ShouldDisposeChequeUnblockAccount()
+        public async Task CanDisposeChequeUnblockAccount()
         {
-            Account _account = new Account(4, "someone");
-            _account.balance = 1000;
-            _account.overdraftLimit = 500;
-            _account.WithdrawCash(1501);
-            Xunit.Assert.True(_account.blocked);
-            Xunit.Assert.Equal(1000, _account.balance);
-            await _account.DeposeCheque(400);
-            Xunit.Assert.False(_account.blocked);
-            Xunit.Assert.Equal(1400, _account.balance);
+            var account = new Account(4, "someone");
+            account.Balance = 1000;
+            account.WithdrawCash(1501);
+            Assert.True(account.Blocked);
+            Assert.Equal(1000, account.Balance);
+            await account.DeposeCheque(400);
+            Assert.False(account.Blocked);
+            Assert.Equal(1400, account.Balance);
         }
     }
 }
