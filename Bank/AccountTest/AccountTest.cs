@@ -52,7 +52,7 @@ namespace AccountTest
         public void CanDeposeValidCashInput()
         {
             var account = new Account(4, "someone");
-            Assert.Throws<Exception>(() => account.DeposeCash(0));
+            Assert.Throws<InvalidCastException>(() => account.DeposeCash(0));
         }
         [Trait("Category", "Withdraw")]
         [Fact]
@@ -69,7 +69,7 @@ namespace AccountTest
         {
             var account = new Account(4, "someone");
             account.Balance = 1000;
-            Assert.Throws<Exception>(() => account.WithdrawCash(0));
+            Assert.Throws< InvalidCastException> (() => account.WithdrawCash(0));
             account.WithdrawCash(2000);
             Assert.True(account.Blocked);
         }
@@ -89,7 +89,7 @@ namespace AccountTest
         {
             var account = new Account(4, "someone");
             account.Balance = 1000;
-            Assert.Throws<Exception>(() => account.WithdrawCash(0));
+            Assert.Throws<InvalidCastException>(() => account.WithdrawCash(0));
             account.WithdrawCash(2000);
             Assert.True(account.Blocked);
         }

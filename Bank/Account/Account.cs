@@ -18,7 +18,7 @@ namespace BankAccount
         }
         public async Task DeposeCheque(double funds)
         {
-            if (funds <= 0) throw new Exception("Invalid fund input");
+            if (funds <= 0) throw new InvalidCastException();
             if (Balance + funds <= 0) return;
             if (DateTime.Today.DayOfWeek == DayOfWeek.Friday)
             {
@@ -35,7 +35,7 @@ namespace BankAccount
         }
         public void DeposeCash(double funds)
         {
-            if (funds <= 0) throw new Exception("Invalid fund input");
+            if (funds <= 0) throw new InvalidCastException();
             if (Balance + funds <= 0) return;
             Blocked = false;
             Balance += funds;
@@ -43,7 +43,7 @@ namespace BankAccount
         public void WithdrawCash(double funds)
         {
             if (Blocked) return;
-            if (funds <= 0 ) throw new Exception("Invalid fund input");
+            if (funds <= 0 ) throw new InvalidCastException();
             if(Balance - funds < 0 && Math.Abs(Balance - funds) > OverdraftLimit)
             {
                 Blocked = true;
@@ -54,7 +54,7 @@ namespace BankAccount
         public void WireTransfer(double funds)
         {
             if (Blocked) return;
-            if (funds <= 0 ) throw new Exception("Invalid fund input");
+            if (funds <= 0 ) throw new InvalidCastException();
             if (funds> dailyWireTransferLimit || (Math.Abs(Balance-funds)> OverdraftLimit && Balance - funds < 0 ))
             {
                 Blocked = true;
